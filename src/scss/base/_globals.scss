@@ -1,0 +1,23 @@
+@use './variables' as v;
+
+/* GLOBALES */
+
+body {
+    font-family: v.$fuente_principal;
+    &.body-scroll {
+        padding-top: 8.6rem;
+    }
+}
+
+li {
+    font-size: large;
+}
+
+section {
+    padding: 2rem 0;
+    border-top: 1px groove;
+}
+
+a {
+    text-decoration: none;
+}

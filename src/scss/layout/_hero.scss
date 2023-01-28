@@ -1,0 +1,12 @@
+@use '../base/variables' as v;
+
+/* HERO */
+
+.foto-cv img {
+    border-radius: 5%;
+}
+
+.btn-primary {
+    background-color: v.$verde;
+    border-color: v.$verde-oscuro;
+}

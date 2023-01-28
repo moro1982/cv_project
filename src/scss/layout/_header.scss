@@ -1,0 +1,32 @@
+@use '../base/variables' as v;
+
+/* HEADER */
+.navbar {
+    padding: 1.5rem;
+    background-color: v.$verde;
+    &.fijo {
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        box-shadow: .1rem .2rem .3rem #333;
+    }
+}
+.navbar-brand {
+    padding-top: .6rem;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.nav-item {
+    font-size: 1.25rem ;
+    font-weight: 700;
+    text-shadow: #333 ;
+    align-items: center;
+}
+.nav-link {
+    color: v.$rosa;
+    &:hover {
+        color: v.$morado;
+    }
+}
