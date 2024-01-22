@@ -8,29 +8,28 @@ const avif = require('gulp-avif');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
-const sourcemaps = require('gulp-sourcemaps');
+// const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser-js');
 
 /* Workflow de CSS */
 function css(done) {
-    src('src/scss/**/*.scss')
-        .pipe( sourcemaps.init() )
+    src('src/scss/**/*.scss', { sourcemaps: true })
         .pipe( plumber() )
         .pipe( sass() )
         .pipe( postcss([ autoprefixer(), cssnano() ]) )
-        .pipe( sourcemaps.write('.') )
-        .pipe( dest('build/css') )
+        // .pipe( sourcemaps.write('.') )
+        .pipe( dest('build/css', { sourcemaps: true }) )
     done();
 }
 
 /* Workflow de JS*/
 function javascript( done ) {
     src( ['node_modules/bootstrap/dist/js/bootstrap.js', 
-        'src/js/**/*.js'] )
-        .pipe( sourcemaps.init() )
+        'src/js/**/*.js'], { sourcemaps: true } )
+        // .pipe( sourcemaps.init() )
         .pipe( terser() )
-        .pipe( sourcemaps.write('.') )
-        .pipe( dest('build/js') );
+        // .pipe( sourcemaps.write('.') )
+        .pipe( dest('build/js', { sourcemaps: true }) );
     done();
 }
 
