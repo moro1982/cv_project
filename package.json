@@ -1,0 +1,30 @@
+{
+  "name": "cv_project",
+  "version": "1.0.0",
+  "description": "CV web-pege project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "sass": "sass src/scss:build/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moro1982/cv_project.git"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JS",
+    "Gulp",
+    "Sass"
+  ],
+  "author": "morodev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moro1982/cv_project/issues"
+  },
+  "homepage": "https://github.com/moro1982/cv_project#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "sass": "^1.70.0"
+  }
+}
