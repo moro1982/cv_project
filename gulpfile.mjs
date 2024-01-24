@@ -1,18 +1,21 @@
-const { src, dest, watch, parallel } = require('gulp');
-const sass = require('gulp-sass')( require('sass') );
-const plumber = require('gulp-plumber');
-const webp = require('gulp-webp');
-// const cache = require('gulp-cache');
-const imagemin = require('gulp-imagemin');
-const avif = require('gulp-avif');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const postcss = require('gulp-postcss');
+import gulp from "gulp";
+const { src, dest, watch, parallel } = gulp; 
+import gulpSass from 'gulp-sass';
+import * as nodeSass from 'sass';
+const sass = gulpSass(nodeSass);
+import plumber from 'gulp-plumber';
+import webp from 'gulp-webp';
+import cache from 'gulp-cache';
+import imagemin from 'gulp-imagemin';
+import avif from 'gulp-avif';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import postcss from 'gulp-postcss';
 // const sourcemaps = require('gulp-sourcemaps');
-const terser = require('gulp-terser-js');
+import terser from 'gulp-terser-js';
 
 /* Workflow de CSS */
-function css(done) {
+function _css(done) {
     src('src/scss/**/*.scss', { sourcemaps: true })
         .pipe( plumber() )
         .pipe( sass() )
@@ -23,7 +26,7 @@ function css(done) {
 }
 
 /* Workflow de JS*/
-function javascript( done ) {
+function _javascript( done ) {
     src( ['node_modules/bootstrap/dist/js/bootstrap.js', 
         'src/js/**/*.js'], { sourcemaps: true } )
         // .pipe( sourcemaps.init() )
@@ -34,7 +37,7 @@ function javascript( done ) {
 }
 
 /* Workflow de Imágenes */
-function versionWebp( done ) {
+function _versionWebp( done ) {
     const options = {
         quality: 50
     };
@@ -43,7 +46,7 @@ function versionWebp( done ) {
         .pipe( dest('build/img') )
     done();
 }
-function versionAvif( done ) {
+function _versionAvif( done ) {
     const options = {
         quality: 50
     };
@@ -52,7 +55,7 @@ function versionAvif( done ) {
         .pipe( dest('build/img') )
     done();
 }
-function imagenes( done ) {
+function _imagenes( done ) {
     const options = {
         optimizationLevel: 3
     }
@@ -63,16 +66,23 @@ function imagenes( done ) {
 }
 
 /* Watch */
-function dev(done) {
+function _dev(done) {
     watch('src/scss/**/*.scss', css);
     watch('src/js/**/*.js', javascript);
     done();
 }
 
-exports.css = css;
-exports.dev = dev;
-exports.javascript = javascript;
-exports.versionWebp = versionWebp;
-exports.versionAvif = versionAvif;
-exports.imagenes = imagenes;
-exports.dev = parallel(imagenes, versionWebp, versionAvif, javascript, dev);
+const css = _css;
+export { css as css };
+const tdev = _dev;
+export { tdev as tdev };
+const javascript = _javascript;
+export { javascript as javascript };
+const versionWebp = _versionWebp;
+export { versionWebp as versionWebp };
+const versionAvif = _versionAvif;
+export { versionAvif as versionAvif };
+const imagenes = _imagenes;
+export { imagenes as imagenes };
+const dev = parallel(imagenes, versionWebp, versionAvif, javascript, tdev);
+export { dev as dev };
