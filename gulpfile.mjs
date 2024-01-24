@@ -15,7 +15,7 @@ import postcss from 'gulp-postcss';
 import terser from 'gulp-terser-js';
 
 /* Workflow de CSS */
-function _css(done) {
+function f_css(done) {
     src('src/scss/**/*.scss', { sourcemaps: true })
         .pipe( plumber() )
         .pipe( sass() )
@@ -26,7 +26,7 @@ function _css(done) {
 }
 
 /* Workflow de JS*/
-function _javascript( done ) {
+function f_javascript( done ) {
     src( ['node_modules/bootstrap/dist/js/bootstrap.js', 
         'src/js/**/*.js'], { sourcemaps: true } )
         // .pipe( sourcemaps.init() )
@@ -37,7 +37,7 @@ function _javascript( done ) {
 }
 
 /* Workflow de Imágenes */
-function _versionWebp( done ) {
+function f_versionWebp( done ) {
     const options = {
         quality: 50
     };
@@ -46,7 +46,7 @@ function _versionWebp( done ) {
         .pipe( dest('build/img') )
     done();
 }
-function _versionAvif( done ) {
+function f_versionAvif( done ) {
     const options = {
         quality: 50
     };
@@ -55,7 +55,7 @@ function _versionAvif( done ) {
         .pipe( dest('build/img') )
     done();
 }
-function _imagenes( done ) {
+function f_imagenes( done ) {
     const options = {
         optimizationLevel: 3
     }
@@ -66,23 +66,23 @@ function _imagenes( done ) {
 }
 
 /* Watch */
-function _dev(done) {
+function f_dev(done) {
     watch('src/scss/**/*.scss', css);
     watch('src/js/**/*.js', javascript);
     done();
 }
 
-const css = _css;
+const css = f_css;
 export { css as css };
-const tdev = _dev;
+const tdev = f_dev;
 export { tdev as tdev };
-const javascript = _javascript;
+const javascript = f_javascript;
 export { javascript as javascript };
-const versionWebp = _versionWebp;
+const versionWebp = f_versionWebp;
 export { versionWebp as versionWebp };
-const versionAvif = _versionAvif;
+const versionAvif = f_versionAvif;
 export { versionAvif as versionAvif };
-const imagenes = _imagenes;
+const imagenes = f_imagenes;
 export { imagenes as imagenes };
 const dev = parallel(imagenes, versionWebp, versionAvif, javascript, tdev);
 export { dev as dev };
