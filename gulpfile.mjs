@@ -86,3 +86,5 @@ const imagenes = f_imagenes;
 export { imagenes as imagenes };
 const dev = parallel(imagenes, versionWebp, versionAvif, javascript, tdev);
 export { dev as dev };
+const build = parallel( css, imagenes, versionWebp, versionAvif, javascript );
+export { build as build };

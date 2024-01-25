@@ -4,7 +4,8 @@
   "description": "CV web-pege project",
   "main": "gulpfile.js",
   "scripts": {
-    "sass": "sass --watch src/scss:build/css"
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
