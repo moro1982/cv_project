@@ -10,11 +10,9 @@ function navegacionFija() {
     window.addEventListener('scroll', function() {      // --> En la ventana aplicamos addEventListener(), para escuchar por el evento 'scroll', y aplique una función.
 
         if( hero.getBoundingClientRect().bottom < 0 ) {
-            // console.log("Ya pasamos el elemento.");
             navbar.classList.add('fijo');
             body.classList.add('body-scroll');
         } else {
-            // console.log("Aún no lo pasamos...");
             navbar.classList.remove('fijo');
             body.classList.remove('body-scroll');
         }
